@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preview Galería - Portfolio</title>
+  <style>
+    :root{--bg:#0d1018;--surface:#151a27;--text:#edf1fa;--muted:#aeb8ca;--accent:#78e0bd}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);padding:40px}
+    .container{max-width:1100px;margin:0 auto}
+    h1{margin:0 0 18px}
+    .gallery{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:18px}
+    .gallery img{width:100%;height:auto;border-radius:12px;display:block;object-fit:cover;border:1px solid rgba(255,255,255,0.04)}
+    .gallery-item{display:block;overflow:hidden}
+    /* lightbox */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:9999}
+    .overlay img{max-width:92%;max-height:92%;border-radius:10px;box-shadow:0 10px 30px #000}
+    .caption{color:var(--muted);text-align:center;margin-top:8px;font-size:0.95rem}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Muestras de trabajo (Preview)</h1>
+    <p class="caption">Estos son placeholders (SVG). Reemplaza con tus imágenes en assets/muestras/.</p>
+
+    <div class="gallery">
+      <a href="assets/muestras/imagen1.svg" class="gallery-item" data-full="assets/muestras/imagen1.svg">
+        <img src="assets/muestras/imagen1_thumb.svg" alt="Proyecto 1">
+      </a>
+      <a href="assets/muestras/imagen2.svg" class="gallery-item" data-full="assets/muestras/imagen2.svg">
+        <img src="assets/muestras/imagen2_thumb.svg" alt="Proyecto 2">
+      </a>
+    </div>
+  </div>
+
+  <script>
+  document.querySelectorAll('.gallery-item').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const src = a.dataset.full || a.href;
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      overlay.addEventListener('click', ()=>overlay.remove());
+      const img = document.createElement('img');
+      img.src = src;
+      overlay.appendChild(img);
+      document.body.appendChild(overlay);
+    });
+  });
+  </script>
+</body>
+</html>
