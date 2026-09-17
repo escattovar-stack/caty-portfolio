@@ -1,0 +1,16 @@
+# Material privado: nunca publicar ni versionar
+private-docs/
+private-assets/
+originals/
+*.pdf
+*.docx
+*.ai
+*.psd
+*.mp4
+*.mov
+*.m4v
+*.webm
+*.zip
+
+# Sistema operativo
+.DS_Store
